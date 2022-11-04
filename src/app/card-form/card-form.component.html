@@ -15,6 +15,7 @@
         So to extract the required length we use:
          the-carform-control-foo.errors['minlength']['requiredLength']
       -->
+      
       <div *ngIf="cardForm.controls['name1'].errors['minlength']">
         Need to be at least
         {{cardForm.controls['name1'].errors['minlength']['requiredLength']}}
