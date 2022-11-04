@@ -1,0 +1,40 @@
+<div>
+  <form [formGroup]="cardForm">
+    <input formControlName="name1" />
+
+    <!-- <ng-container *ngIf="cardForm.controls['name1'].errors"> -->
+    <ng-container *ngIf="cardForm.controls.name1.touched && cardForm.controls['name1'].errors">
+      <div *ngIf="cardForm.controls['name1'].errors?.['required']">
+        Value is required.
+      </div>
+
+      <!-- 
+        Explaining what we are extracting from the error object:
+        The error reponse object is for example:
+        Errors in name1 FormControl: { "minlength": { "requiredLength": 3, "actualLength": 1 } }
+        So to extract the required length we use:
+         the-carform-control-foo.errors['minlength']['requiredLength']
+      -->
+      <div *ngIf="cardForm.controls['name1'].errors['minlength']">
+        Need to be at least
+        {{cardForm.controls['name1'].errors['minlength']['requiredLength']}}
+        charecters, but you entered
+        {{cardForm.controls['name1'].errors['minlength']['actualLength']}}
+      </div>
+
+    </ng-container>
+  </form>
+
+  <hr />
+
+  <!-- <div>Form contents: {{ cardForm.value | json }}</div>
+  <div>Form is valid: {{ cardForm.valid }}</div>
+  <div>
+    Errors in name1 FormControl: {{ cardForm.controls.name1.errors | json }}
+  </div> -->
+  <!--
+    This following expression gives a TS error because .get(name1)
+    may return a null value.  
+    todo I need to learn how to deal with cases like these, how to allow even though a null may be returned.
+<div> Errors in name1 FormControl: {{ cardForm.get('name1').errors | json }} </div>
+--></div>
