@@ -8,16 +8,25 @@ import { FormControl } from '@angular/forms';
 })
 export class InputComponent implements OnInit {
 
-  //!Causes error in input-component ts and html files and also in card-form-component ts file
-  //!@Input()   control: FormControl;
-  
-  //!Causes error in input-component html file and also in card-form-component html file
-  // @Input() control: FormControl = new FormControl();
+  //!Causes error in input-component.html file and also in card-form-component ts file
+  //@Input()   mycontrol: FormControl | undefined;
+  //! This causes same error in input.component.html file:
+  // @Input() mycontrol?: FormControl;
 
-  //? Does not cause an error but BAD-PRACTICE Typescript
-  //? Only when I use the 'any' type then no errors
-  //todo Need to find a solution to use TS correct without above error cases
-  @Input() control: any;
+  //! This causes the app to crash but no error indication in VSCode IDE
+  //@Input () mycontrol!: FormControl;
+
+  //!Causes error in input-component html file and also in card-form-component html file
+  // @Input() mycontrol: FormControl = new FormControl();
+
+ 
+  //todo This works but I need to understand if it is the Best-practice way for TS
+  //todo Also need to understand why all the above alernatives cause errors.
+  @Input()   mycontrol: FormControl | any;
+  //The following also work but they dont seem best-practice because they dont use the FormControl type:
+  //@Input() mycontrol!: any;
+  //@Input() mycontrol: any;
+
 
   constructor() { }
 

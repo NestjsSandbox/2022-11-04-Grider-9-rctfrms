@@ -1,25 +1,25 @@
-<input [formControl]="control" />
-<ng-container *ngIf="control.dirty && control.touched && control.errors">
+<input [formControl]="mycontrol" />
+<ng-container *ngIf="mycontrol.dirty && mycontrol.touched && mycontrol.errors">
   <div>Value is required.</div>
-  <!-- <div *ngIf="control.errors['minlength']"> -->
-  <div *ngIf="control.errors.minlength">
+  <!-- <div *ngIf="mycontrol.errors['minlength']"> -->
+  <div *ngIf="mycontrol.errors.minlength">
     Need to be at least
-    <!-- {{ control.errors["minlength"]["requiredLength"] }} -->
-    {{ control.errors.minlength.requiredLength}}
+    <!-- {{ mycontrol.errors["minlength"]["requiredLength"] }} -->
+    {{ mycontrol.errors.minlength.requiredLength}}
     charecters, but you entered
-    <!-- {{ control.errors["minlength"]["actualLength"] }} -->
-    {{ control.errors.minlength.actualLength }}
+    <!-- {{ mycontrol.errors["minlength"]["actualLength"] }} -->
+    {{ mycontrol.errors.minlength.actualLength }}
   </div>
 
-  <div *ngIf="control.errors.maxlength">
+  <div *ngIf="mycontrol.errors.maxlength">
     Value you entered is
-    {{ control.errors.maxlength.actualLength }}
+    {{ mycontrol.errors.maxlength.actualLength }}
     characters long, but it cannot be longer than
-    {{ control.errors.maxlength.requiredLength }}
+    {{ mycontrol.errors.maxlength.requiredLength }}
     characters
   </div>
 
-  <div *ngIf="control.errors.pattern">Invalid format, only letters allowed</div>
+  <div *ngIf="mycontrol.errors.pattern">Invalid format, only letters allowed</div>
 
 
 </ng-container>

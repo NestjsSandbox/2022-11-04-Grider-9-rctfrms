@@ -2,9 +2,12 @@
   <form [formGroup]="cardForm">
     <!-- <app-input [control]?="cardForm.get('name1')" ></app-input> -->
 
-    <!-- <app-input [control]="cardForm.controls.name1"></app-input> -->
+     <app-input [mycontrol]="cardForm.controls.name1"></app-input>
+     <!-- This also works  -->
+     <!-- <app-input [mycontrol]="$any(cardForm).controls['name1']"></app-input> -->
 
-    <app-input [control]="nameControl"></app-input>
+
+    <!-- <app-input [control]="nameControl"></app-input> -->
 
     <!-- Problem: The following <app-input ...> statementgives an error Type 'AbstractControl<string | null, string | null> | null' is not assignable to type 'FormControl<any>'.
        <app-input [control]="cardForm.get('name1')"></app-input>
