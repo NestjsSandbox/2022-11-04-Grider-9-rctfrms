@@ -28,9 +28,16 @@ export class InputComponent implements OnInit {
   //@Input() mycontrol: any;
 
 
+  @Input() mylabel: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  showErrorsLogic() {
+    const { dirty, touched, errors} = this.mycontrol;
+    return dirty && touched && errors;
   }
 
 }

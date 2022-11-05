@@ -1,31 +1,28 @@
 <div>
-  <form [formGroup]="cardForm">
-    <!-- <app-input [control]?="cardForm.get('name1')" ></app-input> -->
+  <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+    <!-- <app-input [control]?="cardForm.get('cardName')" ></app-input> -->
 
-     <app-input [mycontrol]="cardForm.controls.name1"></app-input>
+     <app-input mylabel="Name on card: " [mycontrol]="cardForm.controls.cardName"></app-input>
      <!-- This also works  -->
-     <!-- <app-input [mycontrol]="$any(cardForm).controls['name1']"></app-input> -->
+     <!-- <app-input [mycontrol]="$any(cardForm).controls['cardName']"></app-input> -->
+     
+     <app-input mylabel="Card Number: " [mycontrol]="cardForm.controls.cardNumber"></app-input>
+     <app-input mylabel="Card Expiration: " [mycontrol]="cardForm.controls.cardExpire"></app-input>
+     <app-input mylabel="Card Security Code: " [mycontrol]="cardForm.controls.cardSecCode"></app-input>
 
+     <button type="submit" class="button is-primary" [disabled]="cardForm.invalid"> Submit Form</button>
 
-    <!-- <app-input [control]="nameControl"></app-input> -->
-
-    <!-- Problem: The following <app-input ...> statementgives an error Type 'AbstractControl<string | null, string | null> | null' is not assignable to type 'FormControl<any>'.
-       <app-input [control]="cardForm.get('name1')"></app-input>
-    Solution:
-    One solution is in the component.ts file to set name1 using "as", example:
-      name = this.cardForm.controls.name1 as FormControl; -->
   </form>
+
+
+
 
   <hr />
 
   <div>Form contents: {{ cardForm.value | json }}</div>
   <div>Form is valid: {{ cardForm.valid }}</div>
   <div>
-    Errors in name1 FormControl: {{ cardForm.controls.name1.errors | json }}
+    Errors in cardName FormControl: {{ cardForm.controls.cardName.errors | json }}
   </div>
-  <!--
-    This following expression gives a TS error because .get(name1)
-    may return a null value.  
-    todo I need to learn how to deal with cases like these, how to allow even though a null may be returned.
-<div> Errors in name1 FormControl: {{ cardForm.get('name1').errors | json }} </div>
---></div>
+
+  </div>
