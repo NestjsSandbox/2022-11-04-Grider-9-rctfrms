@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DateFormControl } from '../date-form-control';
 
 @Component({
   selector: 'app-card-form',
@@ -22,10 +23,14 @@ export class CardFormComponent implements OnInit {
       Validators.minLength(16),
       Validators.maxLength(16),
     ]),
-    cardExpire: new FormControl('', [
+    cardExpire: new DateFormControl('', [
       Validators.required,
       Validators.pattern(/^(0[1-9]|1[0−2])\/\d{2}$/),
     ]),
+    // cardExpire: new FormControl('', [
+    //   Validators.required,
+    //   Validators.pattern(/^(0[1-9]|1[0−2])\/\d{2}$/),
+    // ]),
     cardSecCode: new FormControl('', [
       Validators.required,
       Validators.pattern(/^[0-9]{3}$/),
@@ -45,5 +50,9 @@ export class CardFormComponent implements OnInit {
     console.log('Form is now submitted');
   }
 
+  onResetClick(){
+    console.log('clicked reset');
+    this.cardForm.reset();
+  }
 
 }
