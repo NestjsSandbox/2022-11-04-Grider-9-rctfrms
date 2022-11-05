@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-card-form',
@@ -8,10 +8,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CardFormComponent implements OnInit {
   cardForm = new FormGroup({
+
     name1: new FormControl('', [
       Validators.required,
-      Validators.minLength(3)
+      Validators.minLength(3),
+      Validators.maxLength(5),
+      Validators.pattern(/^[A-Za-z]+$/) //Only letters allowed
+
     ])
+
   });
 
   constructor() {
@@ -21,4 +26,9 @@ export class CardFormComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+
+  public get nameControl(): AbstractControl | null {
+    return this.cardForm.get('name1');
+  }
 }
