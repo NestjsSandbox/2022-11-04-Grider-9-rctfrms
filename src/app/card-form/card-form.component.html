@@ -1,27 +1,67 @@
-<div>
+<div class="columns">
+  <div class="column">
+    <app-card
+    [ccCardName]="cardForm.controls.cardName.value"
+    [ccCardNumber]="cardForm.controls.cardNumber.value"
+    [ccCardExpire]="cardForm.controls.cardExpire.value"
+    >
+  </app-card>
+</div>
+
+<div class="column">
   <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
     <!-- <app-input [control]?="cardForm.get('cardName')" ></app-input> -->
 
-     <app-input mylabel="Name on card: " [mycontrol]="cardForm.controls.cardName"></app-input>
-     <!-- This also works  -->
-     <!-- <app-input [mycontrol]="$any(cardForm).controls['cardName']"></app-input> -->
-     
-     <app-input mylabel="Card Number: " [mycontrol]="cardForm.controls.cardNumber"></app-input>
-     <app-input mylabel="Card Expiration: " [mycontrol]="cardForm.controls.cardExpire"></app-input>
-     <app-input mylabel="Card Security Code: " [mycontrol]="cardForm.controls.cardSecCode"></app-input>
+    <app-input
+      mylabel="Name on card: "
+      [mycontrol]="cardForm.controls.cardName"
+    ></app-input>
+    <!-- This also works  -->
+    <!-- <app-input [mycontrol]="$any(cardForm).controls['cardName']"></app-input> -->
 
-     <button type="submit" class="button is-primary" [disabled]="cardForm.invalid"> Submit Form</button>
+    <app-input
+      mylabel="Card Number: "
+      [mycontrol]="cardForm.controls.cardNumber"
+    ></app-input>
 
-     <button type="button" class="button is-warning" (click)="onResetClick()">Reset</button>
+    <div class="columns">
+      <div class="column">
+        <app-input
+          mylabel="Card Expiration: "
+          [mycontrol]="cardForm.controls.cardExpire"
+        ></app-input>
+      </div>
+
+      <div class="column">
+        <app-input
+          mylabel="Card Security Code: "
+          [mycontrol]="cardForm.controls.cardSecCode"
+        ></app-input>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button
+        type="submit"
+        class="button is-primary"
+        [disabled]="cardForm.invalid"
+      >
+        Submit Form
+      </button>
+
+      <button type="button" class="button is-warning" (click)="onResetClick()">
+        Reset
+      </button>
+    </div>
   </form>
 
-
-  <hr />
+  <!-- <hr />
 
   <div>Form contents: {{ cardForm.value | json }}</div>
   <div>Form is valid: {{ cardForm.valid }}</div>
   <div>
-    Errors in cardName FormControl: {{ cardForm.controls.cardName.errors | json }}
+    Errors in cardName FormControl:
+    {{ cardForm.controls.cardName.errors | json }}
+  </div> -->
   </div>
-
-  </div>
+</div>
